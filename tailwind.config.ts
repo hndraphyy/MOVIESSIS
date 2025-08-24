@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         background: "#0f0f11",
-        green: "#10B981",
+        primary: "#eefb00",
         grayCustom: "#717171",
       },
       keyframes: {
