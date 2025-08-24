@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="font-poppins  bg-gray-900">
+    <html lang="en" className="font-poppins  bg-bgcolor">
       <body>
         <Navbar />
         {children}

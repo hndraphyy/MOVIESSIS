@@ -15,14 +15,14 @@ export default function Navbar() {
     pathname === path ? "text-primary" : "text-gray-300 hover:text-primary";
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+    <header className="fixed top-0 left-0 w-full z-50 bg-bgcolor/90 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
         {/* Logo */}
         <Link
           href="/"
-          className="text-primary font-bold text-3xl md:text-4xl tracking-wide hover:opacity-80 transition"
+          className="text-primary font-bold text-3xl md:text-4xl tracking-wide transition"
         >
-          MOVIESIS
+          MOVIESSIS
         </Link>
 
         {/* Desktop Menu */}
@@ -58,13 +58,20 @@ export default function Navbar() {
 
       {/* Mobile Fullscreen Menu */}
       <div
-        className={`fixed inset-0 z-50 bg-gray-900 flex flex-col p-4 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 z-50 bg-bgcolor flex flex-col p-4 transition-opacity  ${
+          isOpen
+            ? "opacity-100 h-[100vh] bg-bgcolor"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-primary font-bold text-3xl">MOVIESIS</h2>
+        <div className="flex justify-between items-center mb-2 border-b border-gray-600 text-sm pb-4">
+          <Link
+            href="/"
+            className="text-primary font-bold text-3xl md:text-4xl tracking-wide transition"
+          >
+            MOVIESSIS
+          </Link>
           <button
             className="text-white"
             aria-label="Close Menu"
@@ -87,7 +94,11 @@ export default function Navbar() {
             <Link
               key={path}
               href={path}
-              className={`${getLinkClass(path)} text-lg transition-colors`}
+              className={`${
+                pathname === path
+                  ? "text-primary"
+                  : "text-gray-300 hover:text-primary"
+              } text-lg transition-colors`}
               onClick={() => setIsOpen(false)}
             >
               {name}
@@ -96,8 +107,8 @@ export default function Navbar() {
         </nav>
 
         {/* Footer */}
-        <div className="mt-auto pt-6 border-t border-gray-800 text-sm text-gray-500">
-          © {new Date().getFullYear()} MOVIESIS. All rights reserved.
+        <div className="mt-auto pt-6 border-t border-gray-600 text-sm text-gray-500">
+          © {new Date().getFullYear()} MOVIESSIS. All rights reserved.
         </div>
       </div>
     </header>
