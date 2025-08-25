@@ -5,3 +5,10 @@ export interface Movie {
   poster_path: string;
   release_date: string;
 }
+
+export interface MovieHome {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+}

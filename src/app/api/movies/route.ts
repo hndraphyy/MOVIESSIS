@@ -10,7 +10,7 @@ export async function GET() {
       params: { language: "en-US", page: 1 },
     });
 
-    return NextResponse.json(res.data.results); // return Movie[]
+    return NextResponse.json(res.data.results);
   } catch (err) {
     console.error(err);
     return NextResponse.json([], { status: 500 });
