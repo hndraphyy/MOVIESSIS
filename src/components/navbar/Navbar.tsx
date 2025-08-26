@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { menuItems } from "./menu";
 import SearchBar from "./SearchBar";
@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const getLinkClass = (path: string) =>
     pathname === path ? "text-primary" : "text-gray-300 hover:text-primary";
@@ -40,7 +41,11 @@ export default function Navbar() {
           ))}
           <SearchBar
             placeholder="Search movies..."
-            onSearch={(query) => console.log("Searching for:", query)}
+            onSearch={(query) => {
+              if (query.trim()) {
+                router.push(`/search?query=${encodeURIComponent(query)}`);
+              }
+            }}
             size="sm"
           />
         </nav>

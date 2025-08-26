@@ -2,9 +2,9 @@ import axios from "axios";
 import type { Movie } from "@/types/movie";
 
 const tmdbApi = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: `${process.env.NEXT_APP_BASEURL}`,
   headers: {
-    Authorization: `Bearer ${process.env.TMDB_API_READ_ACCESS}`,
+    Authorization: `Bearer ${process.env.NEXT_API_READ_ACCESS}`,
     "Content-Type": "application/json",
   },
 });
