@@ -15,7 +15,8 @@ const MovieCard = ({ movie }: Props) => {
         alt={movie.title}
         width={800}
         height={1000}
-        className="w-full rounded-lg transform transition-transform duration-500 hover:scale-105"
+        className="w-full rounded-lg transform transition-transform duration-500 hover:scale-[1.02]"
+        loading="lazy"
       />
     </div>
   );
