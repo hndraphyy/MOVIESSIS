@@ -13,7 +13,7 @@ const FilmPopularSection = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await fetch("/api/movie");
+        const res = await fetch("/api/popular");
         const data = await res.json();
         setMovies(data);
       } catch (err) {
