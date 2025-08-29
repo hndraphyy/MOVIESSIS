@@ -9,7 +9,7 @@ interface Props {
 
 const MovieCard = ({ movie }: Props) => {
   return (
-    <div className=" w-full shadow-md">
+    <div className="w-full shadow-md">
       <Image
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}

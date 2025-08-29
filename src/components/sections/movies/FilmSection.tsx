@@ -1,9 +1,90 @@
 "use client";
 
-const FilmSection = () => {
+import React, { useEffect, useState } from "react";
+import GenreCard from "@/components/card/GenreCard";
+import LoadingSpinner from "@/components/loading/LoadingSpinner";
+import type { Movie } from "@/types/movie";
+
+interface FilmSectionProps {
+  genre?: string;
+  title: string;
+}
+
+const FilmSection: React.FC<FilmSectionProps> = ({
+  genre = "popular",
+  title,
+}) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const endpoint = genre === "popular" ? "/api/popular" : `/api/${genre}`;
+        const res = await fetch(endpoint);
+
+        const text = await res.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error("Server returned non-JSON response");
+        }
+
+        if (data.error) throw new Error(data.error);
+
+        setMovies(data);
+      } catch (err: unknown) {
+        console.error("Failed to fetch movies:", err);
+
+        let message = "Failed to fetch movies";
+        if (err instanceof Error) {
+          message = err.message;
+        }
+
+        setError(message);
+        setMovies([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchMovies();
+  }, [genre]);
+
+  if (loading)
+    return (
+      <div className="flex justify-center items-center py-40 md:py-52">
+        <LoadingSpinner />
+      </div>
+    );
+  if (error)
+    return <div className="text-red-500 p-4 font-semibold">{error}</div>;
+
   return (
-    <section className="pt-32 text-white">
-      <h1>HELLO</h1>
+    <section className="max-w-7xl mx-auto px-4 py-4 text-left relative z-10">
+      <h2 className="text-white text-xl font-bold mb-4 px-3 py-2 bg-primary">
+        {title}
+      </h2>
+
+      <div className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2">
+        {movies.map((movie) => (
+          <div key={movie.id} className="flex-shrink-0 w-64">
+            <GenreCard
+              title={movie.title}
+              imageUrl={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : "/placeholder.jpg"
+              }
+            />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

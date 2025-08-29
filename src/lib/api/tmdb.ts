@@ -1,17 +1,18 @@
 import axios from "axios";
-import type { Movie } from "@/types/movie";
+import type { Movie, MovieApiResponse } from "@/types/movie";
 
 const tmdbApi = axios.create({
-  baseURL: process.env.NEXT_APP_BASEURL,
+  baseURL: process.env.TMDB_BASEURL,
   headers: {
     Authorization: `Bearer ${process.env.NEXT_API_READ_ACCESS}`,
     "Content-Type": "application/json",
   },
+  timeout: 5000,
 });
 
 export const getPopularMovies = async (): Promise<Movie[]> => {
   try {
-    const res = await tmdbApi.get("/movie/popular", {
+    const res = await tmdbApi.get<MovieApiResponse>("/movie/popular", {
       params: { language: "en-US", page: 1 },
     });
     return res.data.results;
@@ -30,3 +31,25 @@ export async function fetchFromTMDB(endpoint: string) {
   if (!res.ok) throw new Error("Failed to fetch " + endpoint);
   return res.json();
 }
+
+export const getMoviesByGenre = async (
+  genreId: number,
+  page = 1
+): Promise<Movie[]> => {
+  try {
+    const res = await tmdbApi.get<MovieApiResponse>("/discover/movie", {
+      params: { language: "en-US", page, with_genres: genreId },
+    });
+    return res.data.results;
+  } catch (err) {
+    console.error(`Failed to fetch movies for genre ${genreId}:`, err);
+    return [];
+  }
+};
+
+export const GENRES: Record<string, number> = {
+  Comedy: 35,
+  Horror: 27,
+  Drama: 18,
+  Action: 28,
+};
