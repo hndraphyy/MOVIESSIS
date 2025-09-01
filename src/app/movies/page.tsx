@@ -9,7 +9,7 @@ const genres = [
 
 export default function PopularPage() {
   return (
-    <main className="bg-gray-900 min-h-screen py-20 md:py-24">
+    <main className="min-h-screen py-20 md:py-24">
       {genres.map((g) => (
         <FilmSection key={g.key} title={`${g.title} Movies`} genre={g.key} />
       ))}

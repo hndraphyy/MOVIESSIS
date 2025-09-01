@@ -53,3 +53,20 @@ export const GENRES: Record<string, number> = {
   Drama: 18,
   Action: 28,
 };
+
+export const searchMovie = async (query: string): Promise<Movie[]> => {
+  try {
+    const res = await tmdbApi.get<MovieApiResponse>("/search/movie", {
+      params: {
+        query,
+        language: "en-US",
+        page: 1,
+        include_adult: false,
+      },
+    });
+    return res.data.results;
+  } catch (err) {
+    console.error("Failed to search movies : ", err);
+    return [];
+  }
+};

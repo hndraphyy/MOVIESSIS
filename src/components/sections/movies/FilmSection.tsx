@@ -67,11 +67,9 @@ const FilmSection: React.FC<FilmSectionProps> = ({
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-4 text-left relative z-10">
-      <h2 className="text-white text-xl font-bold mb-4 px-3 py-2 bg-primary">
-        {title}
-      </h2>
+      <h2 className="text-white text-[28px] font-bold mb-4 py-2">{title}</h2>
 
-      <div className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2">
+      <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
         {movies.map((movie) => (
           <div key={movie.id} className="flex-shrink-0 w-64">
             <GenreCard

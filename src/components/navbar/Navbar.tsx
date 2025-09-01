@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { menuItems } from "./menu";
-import SearchBar from "./SearchBar";
+import SearchBar from "../search/SearchBar";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

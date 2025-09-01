@@ -19,7 +19,7 @@ const GenreCard: React.FC<GenreCardProps> = ({ title, imageUrl, onClick }) => {
         className="w-full rounded-lg"
         loading="lazy"
       />
-      <div className="pt-3 text-white font-medium">{title}</div>
+      <div className="pt-3 text-base text-gray-300 font-medium">{title}</div>
     </div>
   );
 };
