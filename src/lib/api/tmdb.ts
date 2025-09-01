@@ -22,15 +22,12 @@ export const getPopularMovies = async (): Promise<Movie[]> => {
   }
 };
 
-const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-
-export async function fetchFromTMDB(endpoint: string) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}`
-  );
-  if (!res.ok) throw new Error("Failed to fetch " + endpoint);
-  return res.json();
-}
+export const GENRES: Record<string, number> = {
+  Comedy: 35,
+  Horror: 27,
+  Drama: 18,
+  Action: 28,
+};
 
 export const getMoviesByGenre = async (
   genreId: number,
@@ -47,11 +44,14 @@ export const getMoviesByGenre = async (
   }
 };
 
-export const GENRES: Record<string, number> = {
-  Comedy: 35,
-  Horror: 27,
-  Drama: 18,
-  Action: 28,
+export const getTrendingMovies = async (): Promise<Movie[]> => {
+  try {
+    const res = await tmdbApi.get<MovieApiResponse>("/trending/movie/week");
+    return res.data.results;
+  } catch (err) {
+    console.error("Failed to fetch trending movies:", err);
+    return [];
+  }
 };
 
 export const searchMovie = async (query: string): Promise<Movie[]> => {

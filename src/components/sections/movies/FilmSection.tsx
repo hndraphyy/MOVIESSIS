@@ -66,7 +66,7 @@ const FilmSection: React.FC<FilmSectionProps> = ({
     return <div className="text-red-500 p-4 font-semibold">{error}</div>;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-4 text-left relative z-10">
+    <section className="max-w-7xl mx-auto px-4 text-left relative z-10">
       <h2 className="text-white text-[28px] font-bold mb-4 py-2">{title}</h2>
 
       <div className="flex space-x-4 overflow-x-auto scrollbar-hide">

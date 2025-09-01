@@ -3,10 +3,10 @@ import { getMoviesByGenre, GENRES } from "@/lib/api/tmdb";
 
 export async function GET(
   req: NextRequest,
-  context: { params: Promise<{ genre: string }> } // <== harus Promise
+  context: { params: Promise<{ genre: string }> }
 ) {
   try {
-    const { genre } = await context.params; // ambil genre dari Promise
+    const { genre } = await context.params;
 
     const formattedGenre = genre.charAt(0).toUpperCase() + genre.slice(1);
     const genreId = GENRES[formattedGenre];
