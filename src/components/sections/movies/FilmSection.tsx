@@ -67,11 +67,13 @@ const FilmSection: React.FC<FilmSectionProps> = ({
 
   return (
     <section className="max-w-7xl mx-auto px-4 text-left relative z-10">
-      <h2 className="text-white text-[28px] font-bold mb-4 py-2">{title}</h2>
+      <h2 className="text-white text-[18px] md:text-[28px] font-bold mb-0 md:mb-3 py-2">
+        {title}
+      </h2>
 
-      <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
+      <div className="flex space-x-3 md:space-x-4 overflow-x-auto scrollbar-hide">
         {movies.map((movie) => (
-          <div key={movie.id} className="flex-shrink-0 w-64">
+          <div key={movie.id} className="flex-shrink-0 w-40 md:w-64">
             <GenreCard
               title={movie.title}
               imageUrl={

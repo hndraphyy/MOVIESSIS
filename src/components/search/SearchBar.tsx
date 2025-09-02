@@ -6,12 +6,13 @@ import { Search } from "lucide-react";
 
 interface SearchBarProps {
   placeholder?: string;
-  onSearch: (query: string) => void;
+  onSearch?: (query: string) => void;
   size?: "sm" | "md";
 }
 
 export default function SearchBar({
   placeholder = "Search...",
+  onSearch, // 👉 tarik props-nya
 }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const router = useRouter();
@@ -21,9 +22,12 @@ export default function SearchBar({
 
     if (query.trim() === "") {
       router.push("/movies");
+      onSearch?.("");
       return;
     }
+
     router.push(`/search?query=${encodeURIComponent(query)}`);
+    onSearch?.(query);
   };
 
   return (
@@ -37,7 +41,7 @@ export default function SearchBar({
         placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className=" text-white outline-none w-full placeholder-gray-400 text-sm bg-gray-800/80 px-2 py-2 pl-10 rounded-md"
+        className="text-white outline-none w-full placeholder-gray-400 text-sm bg-gray-800/80 px-2 py-2 pl-10 rounded-md"
       />
     </form>
   );

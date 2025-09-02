@@ -32,7 +32,7 @@ const FilmPopularSection = () => {
         </div>
       ) : (
         <div className="max-w-7xl mx-auto py-24 md:py-28 px-4 text-center relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
             {movies.length > 0 ? (
               movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
             ) : (

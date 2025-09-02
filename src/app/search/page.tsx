@@ -20,19 +20,19 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   return (
-    <section>
-      <div className="max-w-7xl mx-auto py-24 md:py-28 px-4 text-center relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {results.length > 0 ? (
-            results.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-          ) : (
-            <p className="text-gray-500 col-span-full">
-              {query
-                ? "Tidak ada hasil ditemukan."
-                : "Masukkan kata kunci pencarian."}
-            </p>
-          )}
-        </div>
+    <section className="min-h-screen flex items-center justify-center">
+      <div className="max-w-7xl mx-auto py-24 md:py-28 px-4 text-center relative z-10 w-full">
+        {results.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
+            {results.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-500 text-lg">
+            {query ? "No results found." : "Enter search keywords."}
+          </p>
+        )}
       </div>
     </section>
   );

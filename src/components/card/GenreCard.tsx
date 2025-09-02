@@ -19,7 +19,7 @@ const GenreCard: React.FC<GenreCardProps> = ({ title, imageUrl, onClick }) => {
         className="w-full rounded-lg  transform transition-transform duration-500 hover:scale-[1.02] "
         loading="lazy"
       />
-      <div className="pt-3 text-base text-gray-300 font-medium">{title}</div>
+      <p className="pt-3 text-[14px] md:text-base text-gray-300 font-medium">{title}</p>
     </div>
   );
 };
