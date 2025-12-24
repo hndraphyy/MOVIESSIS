@@ -70,3 +70,18 @@ export const searchMovie = async (query: string): Promise<Movie[]> => {
     return [];
   }
 };
+
+export const suggestSearch = async (query: string): Promise<Movie[]> => {
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${
+        process.env.NEXT_PUBLIC_TMDB_API_KEY
+      }&query=${encodeURIComponent(query)}&language=en-US&page=1`
+    );
+    const data = await res.json();
+    return data.results.slice(0, 6);
+  } catch (err) {
+    console.error("Failed to fetch suggestions:", err);
+    return [];
+  }
+};

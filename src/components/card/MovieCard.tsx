@@ -12,7 +12,7 @@ const MovieCard = ({ movie }: Props) => {
   const IMG_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
   return (
-    <div className="w-full shadow-md">
+    <div className="w-full">
       {hasPoster ? (
         <div className="text-start">
           <div>

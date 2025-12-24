@@ -20,7 +20,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section className="min-h-screen flex items-start justify-center">
       <div className="max-w-7xl mx-auto py-24 md:py-28 px-4 text-center relative z-10 w-full">
         {results.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-8">
