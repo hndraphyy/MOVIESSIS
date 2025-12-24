@@ -9,18 +9,25 @@ interface Props {
 
 const MovieCard = ({ movie }: Props) => {
   const hasPoster = !!movie.poster_path;
+  const IMG_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
   return (
     <div className="w-full shadow-md">
       {hasPoster ? (
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-          width={800}
-          height={1000}
-          className="w-full rounded-lg transform transition-transform duration-500 hover:scale-[1.02]"
-          loading="lazy"
-        />
+        <div className="text-start">
+          <div>
+            <Image
+              src={`${IMG_URL}${movie.poster_path}`}
+              alt={movie.title}
+              width={800}
+              height={1000}
+              className="w-full rounded-lg transform transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+          <p className="pt-3 text-[14px] md:text-base text-gray-300 font-medium truncate w-full">
+            {movie.title}
+          </p>
+        </div>
       ) : (
         <div className="w-full aspect-[2/3] bg-gray-700 flex items-center justify-center rounded-lg">
           <span className="text-gray-400 text-sm px-2 text-center">

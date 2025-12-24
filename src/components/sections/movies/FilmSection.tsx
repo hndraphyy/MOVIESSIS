@@ -17,6 +17,7 @@ const FilmSection: React.FC<FilmSectionProps> = ({
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const IMG_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
   useEffect(() => {
     async function fetchMovies() {
@@ -77,9 +78,7 @@ const FilmSection: React.FC<FilmSectionProps> = ({
             <GenreCard
               title={movie.title}
               imageUrl={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : "/placeholder.jpg"
+                movie.poster_path ? `${IMG_URL}${movie.poster_path}` : ""
               }
             />
           </div>
