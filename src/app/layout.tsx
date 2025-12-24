@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="font-poppins  bg-bgcolor">
-      <body>
+      <body suppressHydrationWarning>
         <Navbar />
         {children}
         <Footer />

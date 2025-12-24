@@ -44,7 +44,7 @@ export default function Navbar() {
             placeholder="Search movies..."
             onSearch={(query) => {
               console.log("Searching for:", query);
-              setIsOpen(false); // 🔑 Tutup menu setelah search
+              setIsOpen(false);
             }}
             size="sm"
           />

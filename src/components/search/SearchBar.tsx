@@ -12,7 +12,7 @@ interface SearchBarProps {
 
 export default function SearchBar({
   placeholder = "Search...",
-  onSearch, // 👉 tarik props-nya
+  onSearch,
 }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const router = useRouter();
