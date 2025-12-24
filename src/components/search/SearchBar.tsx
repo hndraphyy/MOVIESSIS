@@ -5,7 +5,17 @@ import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { suggestSearch } from "@/lib/api/tmdb";
 
-export default function SearchBar({ placeholder = "Search..." }) {
+interface SearchBarProps {
+  placeholder?: string;
+  onSearch?: (query: string) => void;
+  size?: "sm" | "md";
+}
+
+export default function SearchBar({
+  placeholder = "Search...",
+  onSearch,
+  size = "md",
+}: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
