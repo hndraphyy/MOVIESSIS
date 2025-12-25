@@ -6,6 +6,14 @@ interface SearchPageProps {
   searchParams: Promise<{ query?: string }>;
 }
 
+export async function generateMetadata({ searchParams }: SearchPageProps) {
+  const params = await searchParams;
+  const query = params.query?.trim() || "";
+  return {
+    title: query ? query : "Search",
+  };
+}
+
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = params.query?.trim() || "";

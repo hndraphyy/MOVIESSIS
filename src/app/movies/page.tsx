@@ -1,4 +1,7 @@
 import FilmSection from "@/components/sections/movies/FilmSection";
+export const metadata = {
+  title: "Movies Page",
+};
 
 const genres = [
   { title: "Action", key: "action" },
