@@ -73,14 +73,14 @@ const FilmSection: React.FC<FilmSectionProps> = ({
       </h2>
 
       <div className="flex space-x-3 md:space-x-4 overflow-x-auto scrollbar-hide">
-        {movies.slice(0, 2).map((movie) => (
+        {movies.map((movie, index) => (
           <div key={movie.id} className="flex-shrink-0 w-40 md:w-64">
             <GenreCard
               title={movie.title}
               imageUrl={
                 movie.poster_path ? `${IMG_URL}${movie.poster_path}` : ""
               }
-              isPriority={true}
+              isPriority={index < 2}
             />
           </div>
         ))}
